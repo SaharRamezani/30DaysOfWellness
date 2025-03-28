@@ -23,6 +23,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -86,8 +87,11 @@ fun WellnessCard(card: CardModel) {
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
-            .clickable { expanded = !expanded }
-    ) {
+            .clickable { expanded = !expanded },
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.secondary
+            )
+        ) {
         Column(modifier = Modifier.padding(8.dp)
                                   /* .background(MaterialTheme.colorScheme.background) */
         ) {
