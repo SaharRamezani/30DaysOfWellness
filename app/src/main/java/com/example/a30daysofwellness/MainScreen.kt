@@ -60,31 +60,34 @@ fun MainScreen(viewModel: MainViewModel, activity: ComponentActivity) {
 @Composable
 fun WellnessCard(card: CardModel) {
     val context = LocalContext.current
-    var showDescription by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
 
     Card(
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
-            .clickable { showDescription = !showDescription }
+            .clickable { expanded = !expanded }
     ) {
         Column(modifier = Modifier.padding(8.dp)) {
-            if (showDescription) {
-                Text(text = card.description)
-            } else {
-                Text(text = "Day ${card.day}")
-                card.imageUri?.let { uri ->
-                    val inputStream = context.contentResolver.openInputStream(uri)
-                    val bitmap = BitmapFactory.decodeStream(inputStream)
-                    bitmap?.let {
-                        Image(
-                            bitmap = it.asImageBitmap(),
-                            contentDescription = null,
-                            modifier = Modifier.height(120.dp)
-                        )
-                    }
+            Text(text = "Day ${card.day}")
+            card.imageUri?.let { uri ->
+                val inputStream = context.contentResolver.openInputStream(uri)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                bitmap?.let {
+                    Image(
+                        bitmap = it.asImageBitmap(),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(120.dp)
+                    )
                 }
-                Text(text = card.title)
+            }
+            Text(text = card.title)
+
+            if (expanded) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(text = card.description)
             }
         }
     }
