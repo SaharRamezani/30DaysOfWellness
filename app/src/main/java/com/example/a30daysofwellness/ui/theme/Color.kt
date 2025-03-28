@@ -12,6 +12,6 @@ val PinkAccent = Color(0xFFFF6392)
 // Dark Theme Colors
 val DarkBackground = Color(0xFF1A1C26)
 val DarkBlue = Color(0xFF314459)
-val DarkGray = Color(0xFF2F2F38)
+// val DarkGray = Color(0xFF2F2F38)
 val Mocha = Color(0xFF7B645A)
 val DeepBrown = Color(0xFF2B1D21)
